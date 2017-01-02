@@ -1,5 +1,15 @@
 {
+    "name": "dzeyelid/staffroom",
     "require": {
+        "microsoft/windowsazure": "*"
+    },
+    "require-dev": {
         "phalcon/devtools": "dev-master"
-    }
+    },
+    "authors": [
+        {
+            "name": "dz",
+            "email": "dzeyelid@gmail.com"
+        }
+    ]
 }
