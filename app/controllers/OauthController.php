@@ -18,15 +18,16 @@ class OauthController extends ControllerBase
             'scopes'            => 'openid mail.send'
         ]);
 
-        return $this->response->redirect($provider->getAuthorizationUrl(), true);
-    }
-
-    public function callbackAction()
-    {
-        $accessToken = $provider->getAccessToken('authorization_code', [
-            'code'  => $this->request->getQuery('code')
-        ]);
-        $this->view->setVar('token', $accessToken->getToken());
+        $code = $this->request->has('code') | $this->request->hasGet('code') | $this->request->hasPost('code');
+        if (! $code) {
+            return $this->response->redirect($provider->getAuthorizationUrl(), true);
+        }
+        else {
+            $accessToken = $provider->getAccessToken('authorization_code', [
+                'code'  => $this->request->getQuery('code')
+            ]);
+            $this->view->setVar('token', $accessToken->getToken());
+        }
     }
 }
 
