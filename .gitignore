@@ -1,4 +1,4 @@
-/cache/
-/config/development/
-
-/vendor/
+cache/
+vendor/
+.phalcon/
+.vscode/
