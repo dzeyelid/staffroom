@@ -16,7 +16,7 @@ class OauthController extends ControllerBase
             'scopes'            => 'openid mail.send'
         ]);
 
-        if (!$this->request->has('code')) {
+        if (!$this->request->hasQuery('code')) {
             return $this->response->redirect($provider->getAuthorizationUrl(), true);
         }
         else {
