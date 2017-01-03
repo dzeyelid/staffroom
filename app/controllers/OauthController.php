@@ -18,14 +18,17 @@ class OauthController extends ControllerBase
             'scopes'            => 'openid mail.send'
         ]);
 
-        if (! $this->request->hasQuery()) {
-            return $this->response->redirect($provider->getAuthorizationUrl(), true);
-        }
-        else {
+        if ($this->request->hasQuery('code')) {
             $accessToken = $provider->getAccessToken('authorization_code', [
                 'code'  => $this->request->getQuery('code')
             ]);
             $this->view->setVar('token', $accessToken->getToken());
+        }
+        else if ($this->request->hasQuery('error_code')) {
+            $this->view->setVar('token', 'ERROR OCCURED.');
+        }
+        else {
+            return $this->response->redirect($provider->getAuthorizationUrl(), true);
         }
     }
 }
