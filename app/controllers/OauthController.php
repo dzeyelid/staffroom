@@ -7,8 +7,8 @@ class OauthController extends ControllerBase
     public function indexAction()
     {
         $provider = new GenericProvider([
-            'clientId'          => getenv('MS_CLIENTID'),
-            'clientSecret'      => getenv('MS_CLIENTSECRET'),
+            'clientId'          => getenv('CUSTOMCONNSTR_MS_CLIENTID'),
+            'clientSecret'      => getenv('CUSTOMCONNSTR_MS_CLIENTSECRET'),
             'redirectUri'       => $this->config->oauth->callback,
             'urlAuthorize'      => 'https://login.microsoftonline.com/common/oauth2/v2.0/authorize',
             'urlAccessToken'    => 'https://login.microsoftonline.com/common/oauth2/v2.0/token',

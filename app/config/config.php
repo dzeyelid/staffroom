@@ -34,7 +34,7 @@ $config = new \Phalcon\Config([
         'baseUri'        => preg_replace('/public([\/\\\\])index.php$/', '', $_SERVER["PHP_SELF"]),
     ],
     'oauth' => [
-        'callback' => getenv('OAUTH_CALLBACK'),
+        'callback' => 'http://' . getenv('WEBSITE_HOSTNAME') . '/oauth',
     ]
 ]);
 
