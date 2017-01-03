@@ -6,6 +6,8 @@ class OauthController extends ControllerBase
 {
     public function indexAction()
     {
+        $this->view->disable();
+
         $provider = new GenericProvider([
             'clientId'          => getenv('CUSTOMCONNSTR_MS_CLIENTID'),
             'clientSecret'      => getenv('CUSTOMCONNSTR_MS_CLIENTSECRET'),
@@ -16,15 +18,15 @@ class OauthController extends ControllerBase
             'scopes'            => 'openid mail.send'
         ]);
 
-        if (!$this->request->hasQuery('code')) {
-            return $this->response->redirect($provider->getAuthorizationUrl(), true);
-        }
-        else {
-            $accessToken = $provider->getAccessToken('authorization_code', [
-                'code'  => $this->request->get('code')
-            ]);
-            $this->view->setVar('token', $accessToken->getToken());
-        }
+        return $this->response->redirect($provider->getAuthorizationUrl(), true);
+    }
+
+    public function callbackAction()
+    {
+        $accessToken = $provider->getAccessToken('authorization_code', [
+            'code'  => $this->request->getQuery('code')
+        ]);
+        $this->view->setVar('token', $accessToken->getToken());
     }
 }
 
