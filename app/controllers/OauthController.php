@@ -15,8 +15,7 @@ class OauthController extends ControllerBase
             'urlAuthorize'      => 'https://login.microsoftonline.com/common/oauth2/v2.0/authorize',
             'urlAccessToken'    => 'https://login.microsoftonline.com/common/oauth2/v2.0/token',
             'urlResourceOwnerDetails'   => '',
-            'scopes'            => 'openid mail.send',
-            'verify'            => false
+            'scopes'            => 'openid mail.send'
         ]);
 
         if ($this->request->hasQuery('code')) {
