@@ -25,8 +25,9 @@ class OauthController extends ControllerBase
             ]);
             $this->view->setVar('token', $accessToken->getToken());
         }
-        else if ($this->request->hasQuery('error_code')) {
-            $this->view->setVar('token', 'ERROR OCCURED.');
+        else if ($this->request->hasQuery('error')) {
+            $errorMessage = $this->request->getQuery('error_description');
+            $this->view->setVar('token', $errorMessage);
         }
         else {
             return $this->response->redirect($provider->getAuthorizationUrl(), true);
