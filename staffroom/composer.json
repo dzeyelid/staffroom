@@ -2,10 +2,7 @@
     "name": "dzeyelid/staffroom",
     "require": {
         "microsoft/windowsazure": "*",
-        "league/oauth2-client": "^1.4"
-    },
-    "require-dev": {
-        "phalcon/devtools": "dev-master"
+        "league/oauth2-client": "*"
     },
     "authors": [
         {
